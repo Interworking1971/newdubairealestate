@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solaya — Beachfront living, artfully composed in Jumeirah</title>
+<meta name="description" content="Beachfront living, artfully composed in Jumeirah">
+<meta property="og:title" content="Solaya">
+<meta property="og:description" content="Beachfront living, artfully composed in Jumeirah">
+<meta property="og:image" content="assets/img_001.jpg">
+<style>
+:root{
+  --accent: #b8935a;
+  --ink:#1a1712; --muted:#6b6357; --line:rgba(26,23,18,.12);
+  --bg:#faf8f4; --card:#ffffff;
+  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.1;letter-spacing:.01em}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.eyebrow{font-family:var(--sans);text-transform:uppercase;letter-spacing:.28em;font-size:12px;color:var(--accent);font-weight:600;margin-bottom:18px}
+.btn{display:inline-block;background:var(--accent);color:#fff;padding:15px 34px;border:none;border-radius:2px;
+  font-family:var(--sans);font-size:13px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;cursor:pointer;transition:.25s;white-space:nowrap}
+.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.6);color:#fff}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:.35s;padding:22px 0}
+.nav.solid{background:rgba(250,248,244,.92);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line);padding:14px 0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.nav .brand{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-size:22px;color:#fff;transition:.35s}
+.nav.solid .brand{color:var(--ink)}
+.nav .brand img{height:40px;width:auto}
+.nav-links{display:flex;gap:30px;align-items:center}
+.nav-links a{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.85);font-weight:500;transition:.25s}
+.nav.solid .nav-links a{color:var(--muted)}
+.nav-links a:hover{color:var(--accent)}
+.nav .btn{padding:11px 22px}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px}
+.burger span{width:26px;height:2px;background:#fff;transition:.3s}
+.nav.solid .burger span{background:var(--ink)}
+
+/* HERO */
+.hero{position:relative;height:100vh;min-height:620px;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff}
+.slides{position:absolute;inset:0}
+.slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.4s ease;transform:scale(1.06)}
+.slide.active{opacity:1;animation:kb 7s ease forwards}
+@keyframes kb{from{transform:scale(1.12)}to{transform:scale(1.0)}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,.25) 40%,rgba(0,0,0,.6))}
+.hero-content{position:relative;z-index:2;max-width:860px;padding:0 24px}
+.hero h1{font-size:clamp(42px,8vw,92px);text-shadow:0 2px 30px rgba(0,0,0,.35)}
+.hero .tagline{font-family:var(--serif);font-size:clamp(19px,3vw,28px);font-style:italic;opacity:.95;margin:14px 0 30px}
+.hero .eyebrow{color:#fff;opacity:.9}
+.hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+.dots{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:3;display:flex;gap:10px}
+.dots button{width:9px;height:9px;border-radius:50%;border:none;background:rgba(255,255,255,.45);cursor:pointer;transition:.3s;padding:0}
+.dots button.active{background:#fff;width:26px;border-radius:6px}
+
+/* SECTIONS */
+section{padding:100px 0;scroll-margin-top:80px}
+.section-head{max-width:640px;margin-bottom:52px}
+.section-head h2{font-size:clamp(32px,5vw,52px)}
+.section-head p{color:var(--muted);margin-top:16px;font-size:17px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.prose p{color:var(--muted);font-size:17px;margin-bottom:16px}
+.stats{display:flex;gap:44px;margin-top:34px;flex-wrap:wrap}
+.stat .n{font-family:var(--serif);font-size:44px;color:var(--accent);line-height:1}
+.stat .l{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.figure{border-radius:3px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(26,23,18,.4);aspect-ratio:4/5}
+.figure img{width:100%;height:100%;object-fit:cover}
+
+.alt{background:#f2ede4}
+.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:28px}
+.res-card{background:var(--card);border:1px solid var(--line);border-radius:3px;padding:34px 30px;transition:.3s}
+.res-card:hover{transform:translateY(-4px);box-shadow:0 24px 50px -30px rgba(26,23,18,.35)}
+.res-card h3{font-size:26px;margin-bottom:8px}
+.res-card .price{color:var(--accent);font-weight:600;letter-spacing:.04em;font-family:var(--sans);font-size:14px}
+.res-card p{color:var(--muted);font-size:15px;margin-top:10px}
+
+.loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.map-frame{border-radius:3px;overflow:hidden;min-height:360px;border:1px solid var(--line);background:#e9e3d8}
+.map-frame iframe{width:100%;height:100%;min-height:360px;border:0;display:block}
+.loc-list{list-style:none;margin-top:24px}
+.loc-list li{padding:12px 0;border-bottom:1px solid var(--line);color:var(--muted);display:flex;gap:12px}
+.loc-list li::before{content:"›";color:var(--accent);font-weight:700}
+
+.dev{display:grid;grid-template-columns:280px 1fr;gap:56px;align-items:center}
+.dev-logo{background:var(--card);border:1px solid var(--line);border-radius:3px;padding:44px;display:flex;align-items:center;justify-content:center;min-height:180px}
+.dev-logo img{max-height:120px;width:auto}
+
+/* GALLERY */
+.gallery{columns:3;column-gap:16px}
+.gallery img{width:100%;margin-bottom:16px;border-radius:2px;cursor:pointer;transition:.3s;break-inside:avoid}
+.gallery img:hover{filter:brightness(1.05);transform:scale(.99)}
+.lightbox{position:fixed;inset:0;background:rgba(15,12,8,.92);z-index:100;display:none;align-items:center;justify-content:center;padding:30px}
+.lightbox.open{display:flex}
+.lightbox img{max-width:92vw;max-height:88vh;border-radius:3px}
+.lightbox .x{position:absolute;top:24px;right:30px;color:#fff;font-size:34px;cursor:pointer;line-height:1}
+
+/* CONTACT */
+.contact{background:var(--ink);color:#fff}
+.contact .section-head h2{color:#fff}
+.contact .section-head p{color:rgba(255,255,255,.65)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px}
+.form{display:grid;gap:16px}
+.form input,.form textarea{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:2px;
+  padding:15px 16px;color:#fff;font-family:var(--sans);font-size:15px}
+.form input::placeholder,.form textarea::placeholder{color:rgba(255,255,255,.45)}
+.form input:focus,.form textarea:focus{outline:none;border-color:var(--accent)}
+.form textarea{min-height:120px;resize:vertical}
+.form .btn{margin-top:6px;justify-self:start}
+.form-note{font-size:12.5px;color:rgba(255,255,255,.5);margin-top:4px}
+.form-msg{font-size:14px;padding:12px 0;display:none}
+.form-msg.ok{display:block;color:#8fd6a0}
+.form-msg.err{display:block;color:#e59b9b}
+.contact-side .eyebrow{color:var(--accent)}
+.contact-side h2{font-size:38px;margin-bottom:14px}
+.contact-side p{color:rgba(255,255,255,.7);margin-bottom:22px}
+.contact-side a{color:#fff;border-bottom:1px solid var(--accent);padding-bottom:2px}
+
+footer{background:#12100c;color:rgba(255,255,255,.5);text-align:center;padding:38px 0;font-size:13px}
+footer .brand{font-family:var(--serif);color:#fff;font-size:20px;margin-bottom:6px}
+
+@media(max-width:860px){
+  .nav-links{position:fixed;inset:0 0 0 auto;width:78%;max-width:340px;background:var(--ink);flex-direction:column;
+    justify-content:center;gap:28px;transform:translateX(100%);transition:.4s;padding:40px}
+  .nav-links.open{transform:translateX(0)}
+  .nav-links a{color:#fff!important;font-size:15px}
+  .nav .btn{display:none}
+  .burger{display:flex}
+  .two-col,.loc-grid,.dev,.contact-grid{grid-template-columns:1fr;gap:36px}
+  .gallery{columns:2}
+  section{padding:70px 0}
+  .dev-logo{max-width:280px}
+}
+@media(max-width:520px){.gallery{columns:1}.stats{gap:28px}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand">
+      <img src="assets/logo_1783572516_modon-logo8e0386b4-26f6-44a0-95a8-634904fd208c.svg" alt="Solaya">
+    </a>
+    <div class="nav-links" id="navlinks">
+      <a href="#project">The Project</a>
+      <a href="#residences">Residences</a>
+      <a href="#location">Location</a>
+      <a href="#developer">Developer</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="btn">Register Interest</a>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="slides" id="slides">
+    
+    <div class="slide active" style="background-image:url('assets/img_001.jpg')"></div>
+    
+    <div class="slide" style="background-image:url('assets/img_004.jpg')"></div>
+    
+    <div class="slide" style="background-image:url('assets/img_005.jpg')"></div>
+    
+    <div class="slide" style="background-image:url('assets/img_006.jpg')"></div>
+    
+    <div class="slide" style="background-image:url('assets/img_007.jpg')"></div>
+    
+    <div class="slide" style="background-image:url('assets/img_008.jpg')"></div>
+    
+    <div class="slide" style="background-image:url('assets/img_010.jpg')"></div>
+    
+  </div>
+  <div class="hero-content">
+    <div class="eyebrow">A Private Collection on Jumeirah&#39;s Coastline</div>
+    <h1>Solaya</h1>
+    <div class="tagline">Beachfront living, artfully composed in Jumeirah</div>
+    <div class="hero-cta">
+      <a href="#contact" class="btn">Register Your Interest</a>
+      <a href="#project" class="btn btn-ghost">Discover More</a>
+    </div>
+  </div>
+  
+  <div class="dots" id="dots">
+    <button class="active" data-i="0"></button><button  data-i="1"></button><button  data-i="2"></button><button  data-i="3"></button><button  data-i="4"></button><button  data-i="5"></button><button  data-i="6"></button>
+  </div>
+  
+</header>
+
+<!-- THE PROJECT -->
+<section id="project">
+  <div class="wrap two-col">
+    <div class="prose">
+      <div class="eyebrow">The Project</div>
+      <h2>Masterfully Crafted Beachfront Residences</h2>
+      <p>Solaya is a private collection of 234 distinguished residences where thoughtfully crafted spaces exude a quiet elegance. Developed in collaboration between Meraas and Brookfield Properties, and designed by Foster + Partners and 1508 London, Solaya is set to become the city's most sought-after residential address.</p><p>Nine beachfront buildings seamlessly integrate architecture and nature, deliberately maximising their sea, city and beach views. Open-plan layouts, light-filled interiors and inviting indoor-outdoor spaces create an elegant canvas for contemporary coastal living, on your terms.</p><p>Curated gardens and shaded areas connect the community to its central Beach Park — an alfresco sanctuary designed for sports, leisure and relaxation, next to renowned hotels, beach clubs and restaurants.</p>
+      
+    </div>
+    
+    <div class="figure"><img src="assets/img_004.jpg" alt="Solaya"></div>
+    
+  </div>
+</section>
+
+<!-- RESIDENCES -->
+<section id="residences" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Residences</div>
+      <h2>A Home For Every Lifestyle</h2>
+      <p>From spacious Classic apartments to ground-floor gardens, duplexes and full-floor penthouses, every Solaya residence frames sweeping sea views with restrained, contemporary design.</p>
+    </div>
+    <div class="res-grid">
+      
+      <div class="res-card">
+        <h3>Classic Residences</h3>
+        <div class="price">1,900 – 7,600 sq. ft.</div>
+        <p>2 to 5 Bedrooms</p>
+      </div>
+      
+      <div class="res-card">
+        <h3>Signature Garden Residences</h3>
+        <div class="price">3 Bedrooms</div>
+        <p>Courtyard garden over 3,000 sq. ft.</p>
+      </div>
+      
+      <div class="res-card">
+        <h3>Signature Duplexes</h3>
+        <div class="price">4 Bedrooms</div>
+        <p>Over 5,000 sq. ft.</p>
+      </div>
+      
+      <div class="res-card">
+        <h3>Penthouses</h3>
+        <div class="price">One penthouse level per building</div>
+        <p>4-metre floor-to-floor height</p>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Location</div>
+      <h2>Perfectly Connected</h2>
+    </div>
+    <div class="loc-grid">
+      <div class="prose">
+        <p>Solaya is positioned along Jumeirah's coastline, a cultured coastal community with direct beach access and a privileged beachfront setting. Neighbouring J1 Beach captures the timeless allure of Riviera living, with thirteen sophisticated restaurants and beach clubs including Sirene Beach by Gaia, Gigi Rigolatto and Bâoli.</p><p>Just minutes from the dynamic heart of Dubai, the community offers effortless connectivity to the city's key destinations while remaining a secluded, gated enclave.</p>
+        
+        <ul class="loc-list">
+          <li>Downtown Dubai – 15-minute drive</li><li>Dubai International Airport – approx. 20 minutes by car</li><li>J1 Beach – neighbouring beachfront destination</li><li>The Dubai Mall &amp; Burj Khalifa</li><li>DIFC &amp; City Walk</li><li>Mandarin Oriental, Bvlgari Resort and Four Seasons Resort nearby</li>
+        </ul>
+        
+      </div>
+      <div class="map-frame">
+        <div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted)">Map</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEVELOPER -->
+<section id="developer" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Developer</div>
+      <h2>Built By The Best</h2>
+    </div>
+    <div class="dev">
+      <div class="dev-logo">
+        <img src="assets/developer_logo_1783572676_modon-logo8e0386b4-26f6-44a0-95a8-634904fd208c.svg" alt="Developer">
+        
+      </div>
+      <div class="prose">
+        <p>Solaya is a collaboration between Meraas and Brookfield Properties. Meraas is committed to strengthening Dubai's global position in real estate through a diverse portfolio of master developments in iconic destinations, delivering exceptional residential experiences tailored to a global clientele. Brookfield Properties is a leading global operator and developer of high-quality real estate, managing more than 1,100 properties and over 395 million square feet on behalf of Brookfield Asset Management.</p><p>Architecture is by Foster + Partners, the global studio for sustainable architecture founded by Norman Foster in 1967, with bespoke interiors by 1508 London, an international design firm renowned for timeless, culturally rooted luxury spaces.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Gallery</div>
+      <h2>A Closer Look</h2>
+    </div>
+    <div class="gallery" id="gallery">
+      
+      <img src="assets/img_000.jpg" alt="Solaya 1" loading="lazy">
+      
+      <img src="assets/img_001.jpg" alt="Solaya 2" loading="lazy">
+      
+      <img src="assets/img_002.png" alt="Solaya 3" loading="lazy">
+      
+      <img src="assets/img_003.jpg" alt="Solaya 4" loading="lazy">
+      
+      <img src="assets/img_004.jpg" alt="Solaya 5" loading="lazy">
+      
+      <img src="assets/img_005.jpg" alt="Solaya 6" loading="lazy">
+      
+      <img src="assets/img_006.jpg" alt="Solaya 7" loading="lazy">
+      
+      <img src="assets/img_007.jpg" alt="Solaya 8" loading="lazy">
+      
+      <img src="assets/img_008.jpg" alt="Solaya 9" loading="lazy">
+      
+      <img src="assets/img_009.png" alt="Solaya 10" loading="lazy">
+      
+      <img src="assets/img_010.jpg" alt="Solaya 11" loading="lazy">
+      
+      <img src="assets/img_011.jpg" alt="Solaya 12" loading="lazy">
+      
+      <img src="assets/img_012.jpg" alt="Solaya 13" loading="lazy">
+      
+      <img src="assets/img_014.jpg" alt="Solaya 14" loading="lazy">
+      
+      <img src="assets/img_013.jpg" alt="Solaya 15" loading="lazy">
+      
+      <img src="assets/img_016.jpg" alt="Solaya 16" loading="lazy">
+      
+      <img src="assets/img_015.jpg" alt="Solaya 17" loading="lazy">
+      
+      <img src="assets/img_017.jpg" alt="Solaya 18" loading="lazy">
+      
+      <img src="assets/img_018.png" alt="Solaya 19" loading="lazy">
+      
+      <img src="assets/img_019.jpg" alt="Solaya 20" loading="lazy">
+      
+      <img src="assets/img_020.jpg" alt="Solaya 21" loading="lazy">
+      
+      <img src="assets/img_021.jpg" alt="Solaya 22" loading="lazy">
+      
+      <img src="assets/img_022.jpg" alt="Solaya 23" loading="lazy">
+      
+      <img src="assets/img_023.jpg" alt="Solaya 24" loading="lazy">
+      
+      <img src="assets/img_024.jpg" alt="Solaya 25" loading="lazy">
+      
+      <img src="assets/img_025.jpg" alt="Solaya 26" loading="lazy">
+      
+      <img src="assets/img_026.jpg" alt="Solaya 27" loading="lazy">
+      
+      <img src="assets/img_027.jpg" alt="Solaya 28" loading="lazy">
+      
+      <img src="assets/img_028.jpg" alt="Solaya 29" loading="lazy">
+      
+      <img src="assets/img_029.png" alt="Solaya 30" loading="lazy">
+      
+      <img src="assets/img_030.jpg" alt="Solaya 31" loading="lazy">
+      
+      <img src="assets/img_031.jpg" alt="Solaya 32" loading="lazy">
+      
+      <img src="assets/img_032.jpg" alt="Solaya 33" loading="lazy">
+      
+      <img src="assets/img_033.jpg" alt="Solaya 34" loading="lazy">
+      
+      <img src="assets/img_034.jpg" alt="Solaya 35" loading="lazy">
+      
+      <img src="assets/img_035.jpg" alt="Solaya 36" loading="lazy">
+      
+      <img src="assets/img_036.jpg" alt="Solaya 37" loading="lazy">
+      
+      <img src="assets/img_037.jpg" alt="Solaya 38" loading="lazy">
+      
+      <img src="assets/img_038.jpg" alt="Solaya 39" loading="lazy">
+      
+      <img src="assets/img_039.jpg" alt="Solaya 40" loading="lazy">
+      
+      <img src="assets/img_040.jpg" alt="Solaya 41" loading="lazy">
+      
+      <img src="assets/img_041.jpg" alt="Solaya 42" loading="lazy">
+      
+      <img src="assets/img_042.jpg" alt="Solaya 43" loading="lazy">
+      
+      <img src="assets/img_043.jpg" alt="Solaya 44" loading="lazy">
+      
+      <img src="assets/img_044.jpg" alt="Solaya 45" loading="lazy">
+      
+      <img src="assets/img_045.jpg" alt="Solaya 46" loading="lazy">
+      
+      <img src="assets/img_046.jpg" alt="Solaya 47" loading="lazy">
+      
+      <img src="assets/img_047.jpg" alt="Solaya 48" loading="lazy">
+      
+      <img src="assets/img_048.jpg" alt="Solaya 49" loading="lazy">
+      
+      <img src="assets/img_049.jpg" alt="Solaya 50" loading="lazy">
+      
+      <img src="assets/img_050.jpg" alt="Solaya 51" loading="lazy">
+      
+      <img src="assets/img_051.jpg" alt="Solaya 52" loading="lazy">
+      
+      <img src="assets/img_052.jpg" alt="Solaya 53" loading="lazy">
+      
+      <img src="assets/img_053.jpg" alt="Solaya 54" loading="lazy">
+      
+      <img src="assets/img_054.jpg" alt="Solaya 55" loading="lazy">
+      
+      <img src="assets/img_055.jpg" alt="Solaya 56" loading="lazy">
+      
+      <img src="assets/img_056.jpg" alt="Solaya 57" loading="lazy">
+      
+      <img src="assets/img_057.jpg" alt="Solaya 58" loading="lazy">
+      
+      <img src="assets/img_058.jpg" alt="Solaya 59" loading="lazy">
+      
+      <img src="assets/img_059.jpg" alt="Solaya 60" loading="lazy">
+      
+      <img src="assets/img_060.jpg" alt="Solaya 61" loading="lazy">
+      
+      <img src="assets/img_061.jpg" alt="Solaya 62" loading="lazy">
+      
+      <img src="assets/img_062.jpg" alt="Solaya 63" loading="lazy">
+      
+      <img src="assets/img_063.png" alt="Solaya 64" loading="lazy">
+      
+      <img src="assets/img_064.jpg" alt="Solaya 65" loading="lazy">
+      
+      <img src="assets/img_065.jpg" alt="Solaya 66" loading="lazy">
+      
+      <img src="assets/img_066.jpg" alt="Solaya 67" loading="lazy">
+      
+      <img src="assets/img_067.jpg" alt="Solaya 68" loading="lazy">
+      
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-side">
+      <div class="eyebrow">Register Interest</div>
+      <h2>Reserve Your Residence</h2>
+      <p>Complete the form and a dedicated property advisor will contact you with pricing, availability and priority access to Solaya.</p>
+      <p>Limited units available. Secure yours today.</p>
+    </div>
+    <form class="form" id="leadForm">
+      <input type="hidden" name="page_id" value="258655ff2479">
+      <input type="hidden" name="project_name" value="Solaya">
+      <input name="name" placeholder="Full Name" required>
+      <input name="email" type="email" placeholder="Email Address" required>
+      <input name="phone" placeholder="Phone Number" required>
+      <textarea name="message" placeholder="I'm interested in… (optional)"></textarea>
+      <button type="submit" class="btn" id="submitBtn">Request Details</button>
+      <div class="form-note">By submitting you agree to be contacted about this development.</div>
+      <div class="form-msg" id="formMsg"></div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="brand">Solaya</div>
+  <div>&copy; <span id="yr"></span> Solaya. All rights reserved.</div>
+</footer>
+
+<div class="lightbox" id="lightbox"><span class="x" id="lbx">&times;</span><img id="lbimg" src="" alt=""></div>
+
+<script>
+// endpoint the form posts to. submit.php lives beside this file when exported.
+window.LEAD_ENDPOINT = "https://www.interworking.com/leads/submit.php";
+(function(){
+  var nav=document.getElementById('nav');
+  function onScroll(){ nav.classList.toggle('solid', window.scrollY>60); }
+  window.addEventListener('scroll',onScroll); onScroll();
+
+  // mobile menu
+  var burger=document.getElementById('burger'), links=document.getElementById('navlinks');
+  if(burger){ burger.onclick=function(){links.classList.toggle('open');}; }
+  Array.prototype.forEach.call(document.querySelectorAll('#navlinks a'),function(a){
+    a.addEventListener('click',function(){links.classList.remove('open');});
+  });
+
+  // hero slider
+  var slides=document.querySelectorAll('#slides .slide'),
+      dots=document.querySelectorAll('#dots button'), cur=0;
+  function go(n){
+    slides[cur].classList.remove('active'); if(dots[cur])dots[cur].classList.remove('active');
+    cur=(n+slides.length)%slides.length;
+    slides[cur].classList.add('active'); if(dots[cur])dots[cur].classList.add('active');
+  }
+  Array.prototype.forEach.call(dots,function(d){ d.onclick=function(){ go(+d.dataset.i); reset(); }; });
+  var timer; function reset(){ clearInterval(timer); if(slides.length>1) timer=setInterval(function(){go(cur+1);},6000); }
+  reset();
+
+  // gallery lightbox
+  var lb=document.getElementById('lightbox'), lbimg=document.getElementById('lbimg');
+  Array.prototype.forEach.call(document.querySelectorAll('#gallery img'),function(im){
+    im.addEventListener('click',function(){ lbimg.src=im.src; lb.classList.add('open'); });
+  });
+  document.getElementById('lbx').onclick=function(){lb.classList.remove('open');};
+  lb.addEventListener('click',function(e){ if(e.target===lb) lb.classList.remove('open'); });
+
+  document.getElementById('yr').textContent=new Date().getFullYear();
+
+  // lead form
+  var form=document.getElementById('leadForm'), msg=document.getElementById('formMsg'), btn=document.getElementById('submitBtn');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    msg.className='form-msg'; btn.disabled=true; var old=btn.textContent; btn.textContent='Sending…';
+    var data={}; new FormData(form).forEach(function(v,k){data[k]=v;});
+    fetch(window.LEAD_ENDPOINT||'submit.php',{
+      method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)
+    }).then(function(r){return r.ok?r.json().catch(function(){return{ok:true};}):Promise.reject(r);})
+      .then(function(){ form.reset(); msg.textContent='Thank you — we will contact you shortly.'; msg.className='form-msg ok'; })
+      .catch(function(){ msg.textContent='Something went wrong. Please email us directly.'; msg.className='form-msg err'; })
+      .finally(function(){ btn.disabled=false; btn.textContent=old; });
+  });
+})();
+</script>
+</body>
+</html>
